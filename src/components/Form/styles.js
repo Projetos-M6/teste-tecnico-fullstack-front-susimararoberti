@@ -9,13 +9,18 @@ export const StyledForm = styled.div`
 
   h2 {
     color: #e6eaff;
-    font-size: 3vh;
+    font-size: 2rem;
     margin-top: 3vh;
     margin-bottom: 4vh;
+
+    @media (max-width: 250px) {
+      font-size: 1.5rem;
+    }
   }
 
   form {
     display: flex;
+    align-items: center;
     width: 100%;
     flex-direction: column;
     gap: 4px;
@@ -56,59 +61,11 @@ export const StyledForm = styled.div`
     }
   }
 
-  @media (min-width: 1450px) {
-    max-width: 40%;
-  }
-
-  @media (min-width: 1600px) {
+  @media (min-width: 800px) {
     max-width: 50%;
   }
-`;
 
-export const Select = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-
-  label {
-    text-align: left;
-    color: #f1f3f8;
-    margin: 0 !important;
-  }
-
-  input {
-    width: 10%;
-    height: 1.5vh !important;
-    border: none;
-    background-color: #bdc4d4;
-    box-sizing: border-box;
-    border: 1px solid #afafaf;
-
-    &::placeholder {
-      color: #0a0222;
-    }
-
-    @media (min-width: 450px) {
-      margin-left: 3px;
-      margin-top: 5px;
-      padding: 1vh !important;
-    }
-
-    @media (min-width: 600px) {
-      width: 8%;
-    }
-
-    @media (min-width: 800px) {
-      width: 6%;
-    }
-
-    @media (min-width: 1000px) {
-      width: 4%;
-    }
-  }
-
-  @media (min-width: 450px) {
-    flex-direction: row !important;
-    margin-top: 1.5vh !important;
+  @media (min-width: 1400px) {
+    max-width: 40%;
   }
 `;

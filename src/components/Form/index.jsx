@@ -5,9 +5,7 @@ function FormComp({ onSubmitFunction, children, title, inputSize }) {
     <StyledForm inputSize={inputSize}>
       <h2>{title}</h2>
 
-      <form action="" onSubmit={onSubmitFunction}>
-        {children}
-      </form>
+      <form onSubmit={onSubmitFunction}>{children}</form>
     </StyledForm>
   );
 }
