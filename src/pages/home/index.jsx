@@ -1,6 +1,6 @@
-import { Container, Content } from "./styles";
-import ButtonComp from "../../components/Button";
 import { useHistory } from "react-router-dom";
+import ButtonComp from "../../components/Button";
+import { Container, Content } from "./styles";
 
 function Home() {
   const token = localStorage.getItem("token");
@@ -21,7 +21,7 @@ function Home() {
   return (
     <Container>
       <Content>
-        <h1>My Schedule</h1>
+        <h1>Contact Book</h1>
         <span>A melhor agenda online!</span>
         <div>
           <ButtonComp

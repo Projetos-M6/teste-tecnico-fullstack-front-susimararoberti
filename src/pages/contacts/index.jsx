@@ -18,6 +18,7 @@ function Contacts() {
   const [token] = useState(JSON.parse(localStorage.getItem("token")));
   const history = useHistory();
   const [schedule, setSchedule] = useState([]);
+  const [reload, setReload] = useState(false);
   const schema = yup.object().shape({
     name: yup
       .string()
@@ -54,7 +55,7 @@ function Contacts() {
 
   useEffect(() => {
     loadContacts();
-  }, []);
+  }, [reload]);
 
   if (!token) {
     return history.push("/");
@@ -72,8 +73,8 @@ function Contacts() {
         Authorization: `Bearer ${token}`,
       },
     })
-      .then((res) => {
-        console.log(res.data);
+      .then((_) => {
+        setReload(!reload);
         toast.success("Cadastrado com Sucesso!");
       })
       .catch((_) => {
@@ -141,6 +142,8 @@ function Contacts() {
                   name={contact.name}
                   email={contact.email}
                   phone={contact.phone}
+                  reload={reload}
+                  setReload={setReload}
                 />
               ))}
             </ul>

@@ -63,6 +63,7 @@ export const Card = styled.article`
     flex-direction: row;
     align-items: center;
     gap: 50px;
+    justify-content: center;
 
     button {
       width: 10%;

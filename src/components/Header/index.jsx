@@ -52,7 +52,6 @@ function HeaderComp({ type }) {
               onclick={toContacts}
               nameButton={"Minha Agenda"}
             ></ButtonComp>
-
             <ButtonComp onclick={logout} nameButton={"Sair"}></ButtonComp>
           </div>
         </Header>

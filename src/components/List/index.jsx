@@ -1,5 +1,8 @@
-import { Item } from "./styles";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import ButtonComp from "../../components/Button";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Box,
   Button,
@@ -14,17 +17,26 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import API from "../../services/api";
-import { toast } from "react-toastify";
-import { useState } from "react";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import { Errors } from "../../pages/contacts/styles";
 
-function List({ name, email, phone, id }) {
+import { Errors, Item } from "./styles";
+
+import API from "../../services/api";
+
+import { toast } from "react-toastify";
+
+function List({ name, email, phone, id, reload, setReload }) {
   const [token] = useState(JSON.parse(localStorage.getItem("token")));
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpen1,
+    onOpen: onOpen1,
+    onClose: onClose1,
+  } = useDisclosure();
+  const {
+    isOpen: isOpen2,
+    onOpen: onOpen2,
+    onClose: onClose2,
+  } = useDisclosure();
+
   const schema = yup.object().shape({
     name: yup
       .string()
@@ -59,9 +71,12 @@ function List({ name, email, phone, id }) {
         },
       }
     )
-      .then((_) => toast.success("Alterado com sucesso"))
+      .then((_) => {
+        setReload(!reload);
+        toast.success("Alterado com sucesso");
+      })
       .catch((err) => console.log(err));
-    onClose();
+    onClose1();
   };
 
   const deleteContact = (id) => {
@@ -70,8 +85,12 @@ function List({ name, email, phone, id }) {
         Authorization: `Bearer ${token}`,
       },
     })
-      .then((_) => toast.success("Excluído com sucesso"))
+      .then((_) => {
+        setReload(!reload);
+        toast.success("Excluído com sucesso");
+      })
       .catch((err) => console.log(err));
+    onClose2();
   };
 
   return (
@@ -81,15 +100,15 @@ function List({ name, email, phone, id }) {
         <p>Email: {email}</p>
         <p>Phone: {phone}</p>
         <Flex>
-          <Button onClick={onOpen} bgColor="#f89317">
+          <Button onClick={onOpen1} bgColor="#f89317">
             <EditIcon w={[3, 4, 5]} h={[3, 4, 5]} color="#FFFFFF" />
           </Button>
-          <Button onClick={() => deleteContact(id)} bgColor={"#fd1515"}>
+          <Button onClick={onOpen2} bgColor={"#fd1515"}>
             <DeleteIcon w={[3, 4, 5]} h={[3, 4, 5]} color="#FFFFFF" />
           </Button>
         </Flex>
 
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen1} onClose={onClose1}>
           <ModalOverlay />
           <ModalContent bgColor={"var(--grey-0)"}>
             <Box>
@@ -140,6 +159,34 @@ function List({ name, email, phone, id }) {
                     <ButtonComp type="submit" nameButton="Editar"></ButtonComp>
                   </Flex>
                 </form>
+              </ModalBody>
+            </Box>
+          </ModalContent>
+        </Modal>
+        <Modal isOpen={isOpen2} onClose={onClose2}>
+          <ModalOverlay />
+          <ModalContent bgColor={"var(--grey-0)"}>
+            <Box>
+              <ModalHeader
+                color="#652B19"
+                bgColor={"var(--brown-5)"}
+                fontSize={["14px", "16px", "18px"]}
+              >
+                Exluir Contato
+              </ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <Flex flexDir={"column"} gap={5}>
+                  <h1>Tem certeza que deseja deletar esse contato?</h1>
+                  <Button
+                    onClick={() => deleteContact(id)}
+                    color="#FFFFFF"
+                    bgColor="#7d3e37"
+                    _hover={{ bg: "#e98661" }}
+                  >
+                    Deletar Contato
+                  </Button>
+                </Flex>
               </ModalBody>
             </Box>
           </ModalContent>

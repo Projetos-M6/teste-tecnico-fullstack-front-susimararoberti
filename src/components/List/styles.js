@@ -46,3 +46,9 @@ export const Item = styled.li`
     width: 80%;
   }
 `;
+
+export const Errors = styled.span`
+  font-size: 0.8rem;
+  font-family: "Roboto", sans-serif;
+  color: var(--red);
+`;

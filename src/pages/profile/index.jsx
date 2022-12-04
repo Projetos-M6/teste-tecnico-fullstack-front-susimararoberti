@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Box,
   Button,
@@ -16,7 +17,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import { yupResolver } from "@hookform/resolvers/yup";
+
 import ButtonComp from "../../components/Button";
 import HeaderComp from "../../components/Header";
 
@@ -25,12 +26,12 @@ import { Boxx, Card, Container, Errors } from "./styles";
 import API from "../../services/api";
 
 import { toast } from "react-toastify";
-import { useEffect } from "react";
 
 function Profile() {
   const [token] = useState(JSON.parse(localStorage.getItem("token")));
   const history = useHistory();
   const [profile, setProfile] = useState();
+  const [reload, setReload] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {
     isOpen: isOpen2,
@@ -74,7 +75,7 @@ function Profile() {
 
   useEffect(() => {
     loadProfile();
-  }, []);
+  }, [reload]);
 
   if (!token) {
     return history.push("/");
@@ -90,8 +91,12 @@ function Profile() {
         },
       }
     )
-      .then((_) => toast.success("Alterado com sucesso"))
+      .then((_) => {
+        setReload(!reload);
+        toast.success("Alterado com sucesso");
+      })
       .catch((err) => console.log(err));
+
     onClose();
   };
 

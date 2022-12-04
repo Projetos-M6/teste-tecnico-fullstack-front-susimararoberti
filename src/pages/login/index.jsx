@@ -41,7 +41,6 @@ function Login() {
 
     API.post("/login", data)
       .then((res) => {
-        console.log(res.data);
         const { token } = res.data;
         localStorage.setItem("token", JSON.stringify(token));
         toast.success("Logado com Sucesso!");
