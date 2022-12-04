@@ -49,7 +49,7 @@ function List({ name, email, phone, id }) {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const editEntry = (obj) => {
+  const editContact = (obj) => {
     API.patch(
       `/contacts/${obj.id}`,
       { name: obj.name, email: obj.email, phone: obj.phone },
@@ -64,7 +64,7 @@ function List({ name, email, phone, id }) {
     onClose();
   };
 
-  const deleteEntry = (id) => {
+  const deleteContact = (id) => {
     API.delete(`/contacts/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -84,7 +84,7 @@ function List({ name, email, phone, id }) {
           <Button onClick={onOpen} bgColor="#f89317">
             <EditIcon w={[3, 4, 5]} h={[3, 4, 5]} color="#FFFFFF" />
           </Button>
-          <Button onClick={() => deleteEntry(id)} bgColor={"#fd1515"}>
+          <Button onClick={() => deleteContact(id)} bgColor={"#fd1515"}>
             <DeleteIcon w={[3, 4, 5]} h={[3, 4, 5]} color="#FFFFFF" />
           </Button>
         </Flex>
@@ -102,7 +102,7 @@ function List({ name, email, phone, id }) {
               </ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-                <form onSubmit={handleSubmit(editEntry)}>
+                <form onSubmit={handleSubmit(editContact)}>
                   <Flex flexDir={"column"} gap={5}>
                     <div>
                       <Input

@@ -6,7 +6,7 @@ import { Header } from "./styles";
 
 import API from "../../services/api";
 
-function HeaderComp() {
+function HeaderComp({ type }) {
   const history = useHistory();
   const [user, setUser] = useState("");
   const [token] = useState(JSON.parse(localStorage.getItem("token")));
@@ -23,10 +23,14 @@ function HeaderComp() {
 
   useEffect(() => {
     loadUser();
-  });
+  }, []);
 
   const toProfile = () => {
     history.push("/profile");
+  };
+
+  const toContacts = () => {
+    history.push("/contacts");
   };
 
   const logout = () => {
@@ -34,16 +38,37 @@ function HeaderComp() {
     return history.push("/");
   };
 
-  return (
-    <Header>
-      <h1>Olá, {user}!</h1>
-      <div>
-        <ButtonComp onclick={toProfile} nameButton={"Meu Perfil"}></ButtonComp>
+  switch (type) {
+    case "profile":
+      return (
+        <Header>
+          <h1>Olá, {user}!</h1>
+          <div>
+            <ButtonComp
+              onclick={toContacts}
+              nameButton={"Minha Agenda"}
+            ></ButtonComp>
 
-        <ButtonComp onclick={logout} nameButton={"Sair"}></ButtonComp>
-      </div>
-    </Header>
-  );
+            <ButtonComp onclick={logout} nameButton={"Sair"}></ButtonComp>
+          </div>
+        </Header>
+      );
+
+    default:
+      return (
+        <Header>
+          <h1>Olá, {user}! to no default</h1>
+          <div>
+            <ButtonComp
+              onclick={toProfile}
+              nameButton={"Meu Perfil"}
+            ></ButtonComp>
+
+            <ButtonComp onclick={logout} nameButton={"Sair"}></ButtonComp>
+          </div>
+        </Header>
+      );
+  }
 }
 
 export default HeaderComp;

@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -15,6 +16,7 @@ import { toast } from "react-toastify";
 
 function Contacts() {
   const [token] = useState(JSON.parse(localStorage.getItem("token")));
+  const history = useHistory();
   const [schedule, setSchedule] = useState([]);
   const schema = yup.object().shape({
     name: yup
@@ -40,7 +42,6 @@ function Contacts() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  /*const history = useHistory();*/
   function loadContacts() {
     API.get("/users", {
       headers: {
@@ -54,6 +55,10 @@ function Contacts() {
   useEffect(() => {
     loadContacts();
   }, []);
+
+  if (!token) {
+    return history.push("/");
+  }
 
   const registred = ({ name, email, phone }) => {
     const contact = {
