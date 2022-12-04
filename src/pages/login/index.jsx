@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ButtonComp from "../../components/Button";
 import FormComp from "../../components/Form";
+import HeaderComp from "../../components/Header";
 
 import { Box, Container, Errors } from "./styles";
 
@@ -53,6 +54,7 @@ function Login() {
 
   return (
     <Container>
+      <HeaderComp type="home" />
       <Box>
         <FormComp
           title="Login"

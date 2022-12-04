@@ -33,6 +33,10 @@ function HeaderComp({ type }) {
     history.push("/contacts");
   };
 
+  const toHome = () => {
+    history.push("/");
+  };
+
   const logout = () => {
     localStorage.removeItem("token");
     return history.push("/");
@@ -53,11 +57,22 @@ function HeaderComp({ type }) {
           </div>
         </Header>
       );
-
+    case "home":
+      return (
+        <Header>
+          <h1>Olá!</h1>
+          <div>
+            <ButtonComp
+              onclick={toHome}
+              nameButton={"Voltar a Home"}
+            ></ButtonComp>
+          </div>
+        </Header>
+      );
     default:
       return (
         <Header>
-          <h1>Olá, {user}! to no default</h1>
+          <h1>Olá, {user}!</h1>
           <div>
             <ButtonComp
               onclick={toProfile}
