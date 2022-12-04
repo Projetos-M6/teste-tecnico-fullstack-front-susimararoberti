@@ -1,45 +1,48 @@
 import styled from "styled-components";
 
-export const SectionList = styled.section`
-  border-radius: 13px;
-  box-shadow: 0 0 0.2rem 0;
-  min-width: ${({ minSize }) => minSize};
-  width: ${({ size }) => size};
-  min-height: ${({ sizeY }) => sizeY};
-  max-height: ${({ maxSizeY }) => maxSizeY};
-  background-color: #f7ecde;
-
-  max-width: ${({ maxSizeWidth }) => maxSizeWidth};
+export const Item = styled.li`
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
-  overflow: auto;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem;
+  margin: 0.5rem;
+  background-color: var(--grey-0);
+  border-radius: 20px 0 0 0;
+  border: 1.5px solid var(--grey-2);
 
-  header {
-    border-radius: 8px 8px 0 0;
-
-    background-color: #54bab9;
-    height: 40px;
-
+  div {
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-bottom: 5px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
 
-    h1 {
-      color: white;
-      font-size: 1.6rem;
-      font-weight: 700;
+    p {
+      font-size: 1rem;
+      color: var(--brown-1);
+      font-weight: 600;
+      font-weight: 500;
+      padding: 5px 0;
+    }
+
+    div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 50px;
+
+      button {
+        width: 10%;
+        height: 30px;
+        margin: 0;
+      }
     }
   }
 
-  ul {
-    padding: 0.5rem;
-
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-    overflow: auto;
-    max-height: calc(${({ maxSizeY }) => maxSizeY} - 4.3rem);
+  @media (min-width: 900px) {
+    width: 80%;
   }
 `;

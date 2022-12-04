@@ -50,6 +50,7 @@ function Login() {
         toast.error("Erro ao logar, email e/ou senha incorreto(s)!");
       });
   };
+
   return (
     <Container>
       <Box>

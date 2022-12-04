@@ -5,17 +5,18 @@ export const Button = styled.button`
   cursor: pointer;
   font-weight: 600;
   font-size: 1rem;
+  font-family: "Roboto", sans-serif;
   border-radius: 8px;
   border-style: none;
-  color: #240e3d;
-  background-color: #ffffff;
+  color: var(--white);
+  background-color: var(--brown-1);
   padding: 10px;
   height: 6vh;
   width: max-content;
 
   &:hover {
-    background-color: #64012f;
-    color: #ffffff;
+    color: var(--grey-4);
+    background-color: var(--brown-3);
   }
 
   @media (max-width: 250px) {

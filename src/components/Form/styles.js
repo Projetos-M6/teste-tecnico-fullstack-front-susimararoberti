@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledForm = styled.div`
+export const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,13 +8,14 @@ export const StyledForm = styled.div`
   padding: 1rem;
 
   h2 {
-    color: #e6eaff;
-    font-size: 2rem;
+    color: var(--brown-1);
+    font-weight: 600;
+    font-size: 1.5rem;
     margin-top: 3vh;
     margin-bottom: 4vh;
 
     @media (max-width: 250px) {
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
   }
 
@@ -34,7 +35,7 @@ export const StyledForm = styled.div`
 
     label {
       text-align: left;
-      color: #f1f3f8;
+      color: var(--brown-2);
       padding-left: 5px;
       margin-top: 1.5vh;
       margin-bottom: 0.5vh;
@@ -45,13 +46,13 @@ export const StyledForm = styled.div`
       max-height: 50px;
       border-radius: 8px;
       border: none;
-      background-color: #bdc4d4;
+      background-color: var(--brown-5);
       padding: 1vh;
       box-sizing: border-box;
-      border: 1px solid #afafaf;
+      border: 1px solid var(--brown-4);
 
       &::placeholder {
-        color: #0a0222;
+        color: var(--brown-0);
       }
     }
 
@@ -61,8 +62,8 @@ export const StyledForm = styled.div`
     }
   }
 
-  @media (min-width: 800px) {
-    max-width: 50%;
+  @media (min-width: 700px) {
+    max-width: 45%;
   }
 
   @media (min-width: 1400px) {

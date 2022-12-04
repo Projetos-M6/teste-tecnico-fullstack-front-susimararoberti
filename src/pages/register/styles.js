@@ -18,5 +18,6 @@ export const Box = styled.section`
 
 export const Errors = styled.span`
   font-size: 0.8rem;
+  font-family: "Roboto", sans-serif;
   color: #e60000;
 `;
