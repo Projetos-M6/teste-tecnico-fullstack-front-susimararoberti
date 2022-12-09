@@ -25,10 +25,10 @@ function Home() {
         <span>A melhor agenda online!</span>
         <div>
           <ButtonComp
-            onclick={toRegister}
+            onClick={toRegister}
             nameButton={"Cadastre-se"}
           ></ButtonComp>
-          <ButtonComp onclick={toLogin} nameButton="Faça Login"></ButtonComp>
+          <ButtonComp onClick={toLogin} nameButton="Faça Login"></ButtonComp>
         </div>
       </Content>
     </Container>

@@ -49,10 +49,10 @@ function HeaderComp({ type }) {
           <h1>Olá, {user}!</h1>
           <div>
             <ButtonComp
-              onclick={toContacts}
+              onClick={toContacts}
               nameButton={"Minha Agenda"}
             ></ButtonComp>
-            <ButtonComp onclick={logout} nameButton={"Sair"}></ButtonComp>
+            <ButtonComp onClick={logout} nameButton={"Sair"}></ButtonComp>
           </div>
         </Header>
       );
@@ -62,7 +62,7 @@ function HeaderComp({ type }) {
           <h1>Olá!</h1>
           <div>
             <ButtonComp
-              onclick={toHome}
+              onClick={toHome}
               nameButton={"Voltar a Home"}
             ></ButtonComp>
           </div>
@@ -74,11 +74,11 @@ function HeaderComp({ type }) {
           <h1>Olá, {user}!</h1>
           <div>
             <ButtonComp
-              onclick={toProfile}
+              onClick={toProfile}
               nameButton={"Meu Perfil"}
             ></ButtonComp>
 
-            <ButtonComp onclick={logout} nameButton={"Sair"}></ButtonComp>
+            <ButtonComp onClick={logout} nameButton={"Sair"}></ButtonComp>
           </div>
         </Header>
       );

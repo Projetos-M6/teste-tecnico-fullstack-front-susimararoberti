@@ -1,11 +1,7 @@
 import { Button } from "./styles";
 
-function ButtonComp({ onclick, type, nameButton }) {
-  return (
-    <Button onClick={onclick} type={type}>
-      {nameButton}
-    </Button>
-  );
+function ButtonComp({ nameButton, ...rest }) {
+  return <Button {...rest}>{nameButton}</Button>;
 }
 
 export default ButtonComp;

@@ -40,6 +40,7 @@ function Contacts() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -76,6 +77,7 @@ function Contacts() {
       .then((_) => {
         setReload(!reload);
         toast.success("Cadastrado com Sucesso!");
+        reset();
       })
       .catch((_) => {
         toast.error(
